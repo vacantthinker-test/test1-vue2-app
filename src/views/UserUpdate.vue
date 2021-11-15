@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import UserDataService from "@/services/UserDataService";
 
 export default {
   name: 'UserUpdate',
@@ -29,36 +28,28 @@ export default {
     }
   },
   methods: {
-    clickToUserUpdate() {
+    clickToUserUpdate() { // 点击提交更新
+      // 1 获取数据 检查格式
       if (!this.user.userName || !this.user.password) {
         console.log(`userName 或者 password 是空的, 请不要那么做`)
         return
       }
+      // 2 提交数据
       const user = this.user
-      UserDataService.updateUser(user)
-          .then(res => {
-            console.log(res.data)
-            if (res.data.message === 'success') {
-              this.$router.push({name: 'user-list'})
-            }
-          })
-          .catch(err => {
-            console.log(err)
-          })
+      this.$store.dispatch('updateUser', {user})
+      this.$router.push({name: 'user-list'})
+      // 3 清空容器 [输入框一类]
     }
   },
   mounted() {
-    // 这里使用vuex会更好 vuex是状态管理工具 由一个全局唯一的store对象 来管理 组件的数据
     console.log('user-update', this.$route.params); // 拿到了id
     const {id} = this.$route.params // es6 解构语法
-    UserDataService.getUser(id)
-        .then(res => {
-          console.log(res.data);
-          this.user = res.data
-        })
-        .catch(error => {
-          console.log(error)
-        })
+
+    if (0 === this.$store.getters.getAllUsersLength) { // 如果没有数据 跳转到user-list页面
+      this.$router.push({name: 'user-list'})
+    } else { // 如果有数据 根据id 从store中state中 根据id 从users拿到数据
+      this.user = this.$store.getters.getUser(id)
+    }
   }
 }
 </script>

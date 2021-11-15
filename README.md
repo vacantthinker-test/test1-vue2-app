@@ -99,11 +99,39 @@ axios
 
 ---
 
-finished...
+part01- finished...
 
+---
 
+使用vuex
 
+有在线英文课程 交互式学习 注册个账号就可以学习了
+https://scrimba.com/g/gvuex
 
+ES2015 也叫ES6
+
+SSOT 必须保证唯一
+
+---
+
+```text
+单项数据流, 只能顺着走
+
+vue视图转发[dispatch] --> 一个action
+    this.$store.dispatch('getAllUsers')
+    
+action提交[commit]    --> 一个mutation
+    context.commit(GET_ALL_USERS, {users}) // 提交至mutations 携带users数据
+    
+mutation             --> 更改state
+    state.users = users
+    
+state渲染[render]     --> vue视图
+    
+
+```
+
+---
 
 
 
