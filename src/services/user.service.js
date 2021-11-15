@@ -2,7 +2,7 @@ import httpCommon from "@/http/http-common";
 
 const url = '/users'
 
-class UserDataService {
+class UserService {
 	/**
 	 * 增加User方法
 	 * @param user
@@ -34,6 +34,6 @@ class UserDataService {
 	}
 }
 
-export default new UserDataService(); // 默认是单例模式, 不会每次调用方法
+export default new UserService(); // 默认是单例模式, 不会每次调用方法
 // 就创建一个新的UserDataService对象实例
 
