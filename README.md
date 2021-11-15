@@ -131,9 +131,37 @@ state渲染[render]     --> vue视图
 
 ```
 
+```javascript
+//    "git-add": "git add . && git branch && git commit -m 'add' " 这么做也是可以的
+// 同步[方式] 执行 命令行脚本 --> 从子线程child_process 中获取
+const {execSync} = require('child_process') // 使用node.js 子线程 执行 Windows命令行
+// 解构语法 获取 execSync Sync同步的意思
+
+// 队列命令行, 每次执行一个, 依次按顺序执行命令
+// 整合成一个数组
+const queueCommand = [
+	'git add . ', // git添加项目所有命令, 除了.gitignore文件中忽略的
+	'git branch', // git切换分支, 必需行, 不然直接执行下一行, 必然出错
+	`git commit -m \" update \" ` // git提交 携带信息 message
+]
+// 队列执行命令 同步方式
+// 每次从数组中拿出一个来, 使用execSync执行当前的数组项字符串
+//  即依次执行.
+//  git add .
+//  git branch
+//  git commit -m 'update'
+queueCommand.forEach(item => execSync(item))
+
+
+```
+
 ---
 
+vuex 已添加
 
+---
+
+finished
 
 
 
