@@ -1,4 +1,4 @@
-import httpCommon from "@/http/http-common";
+import httpCommon from "../http/http.common";
 
 const url = '/users'
 
