@@ -6,8 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "yif": "yarn install --offline",
-    "git-add": "git add . && git branch && git commit -m 'add' "
+    "yi": "yarn install",
+    "yio": "yarn install --offline"
   },
   "dependencies": {
     "axios": "^0.24.0",
